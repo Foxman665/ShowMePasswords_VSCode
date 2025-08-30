@@ -1,0 +1,61 @@
+{
+  "name": "showmepasswords_oracle",
+  "displayName": "Show Me Passwords - Oracle SQL Developer",
+  "description": "Reads Oracle SQL Developer for VS Code connections from AppData folder",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "showmepasswords.listConnections",
+        "title": "Show Me Passwords: List Connections"
+      },
+      {
+        "command": "showmepasswords.refreshConnections",
+        "title": "Show Me Passwords: Refresh Connections"
+      },
+      {
+        "command": "showmepasswords.showPaths",
+        "title": "Show Me Passwords: Show Paths"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "sqlDeveloperConnections",
+          "name": "Show Me Passwords",
+          "when": "showmepasswords.hasConnections"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "showmepasswords.refreshConnections",
+          "when": "view == sqlDeveloperConnections",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  }
+}
